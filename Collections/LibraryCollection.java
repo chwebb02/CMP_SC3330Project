@@ -10,11 +10,11 @@ Basic information relating to their accessibility, location, and identifiers are
 */
 abstract class LibraryCollection {
     // Hashmap to store all members of the collection, because databases are cringe
-    private static HashMap<char[], LibraryCollection> collection = new HashMap<char[], LibraryCollection>();
+    public static HashMap<char[], LibraryCollection> collection = new HashMap<char[], LibraryCollection>();
 
-    protected char[] identifier;                    // The ISBN or ISSN of a book
-    protected byte section;                       // The numeric code corresponding to the section the media belongs to
-    protected boolean isCheckedOut = false;       // Is the piece of media already checked out?
+    protected char[] identifier;                // The ISBN or ISSN of a book
+    private byte section;                       // The numeric code corresponding to the section the media belongs to
+    private boolean isCheckedOut = false;       // Is the piece of media already checked out?
 
     // No default constructor, too much headache
     LibraryCollection(char[] id, byte section) throws InvalidIdentifierSizeException{
@@ -28,12 +28,12 @@ abstract class LibraryCollection {
     }
 
     // Return value for getISBN or getISSN on subclasses
-    protected char[] getID() {
+    public char[] getID() {
         return identifier;
     }
 
     // Returns the numeric representation of the section 
-    protected byte getSection() {
+    public byte getSection() {
         return section;
     }
 
@@ -48,8 +48,13 @@ abstract class LibraryCollection {
         return true;
     }
 
+    // Returns a book to the library, thus setting checkedOut status to false
+    public void returnToCollection() {
+        isCheckedOut = false;
+    }
+
     // Returns the size of the library collection
-    public static long getCollectionSize() {
+    public static int getCollectionSize() {
         return collection.size();
     }
 }
