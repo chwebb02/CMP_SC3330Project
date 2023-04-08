@@ -9,6 +9,7 @@ public class Newspaper extends LibraryCollection {
 
     Newspaper(char[] ISSN, byte section) throws InvalidIdentifierSizeException {
         super(ISSN, section);
+        newspaperCollection.put(identifier, this);
     }
 
     public char[] getISSN() {

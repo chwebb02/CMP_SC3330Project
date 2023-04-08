@@ -9,6 +9,7 @@ public class Journal extends LibraryCollection {
 
     Journal(char[] ISSN, byte section) throws InvalidIdentifierSizeException {
         super(ISSN, section);
+        journalCollection.put(identifier, this);
     }
 
     public char[] getISSN() {

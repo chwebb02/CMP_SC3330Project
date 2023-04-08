@@ -9,6 +9,7 @@ public class DVD extends LibraryCollection {
 
     DVD(char[] DOI, byte section) throws InvalidIdentifierSizeException {
         super(DOI, section);
+        dvdCollection.put(identifier, this);
     }
 
     public char[] getDOI() {
