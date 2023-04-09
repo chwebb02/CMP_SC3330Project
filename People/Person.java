@@ -1,22 +1,25 @@
 package People;
 
-import java.time.LocalDate;
 import Utils.SSN;
+import java.time.LocalDate;
 
+/*
+Person:
+The abstract class that all people inherit from
+Basic information relating to their name, address, email, password, dob, and ssn are avaiable here
+*/
 abstract class Person {
     // Instance Variables
-    String name, address, email;
+    String name, address, email, password;
+
     LocalDate dob;
     SSN ssn;
 
-    //! Requires a default constructor as Person is inherited, but don't know what to include in it
-    protected Person() {
-    }
-
-    protected Person(String name, String address, String email, LocalDate dob, SSN ssn) {
+    Person(String name, String address, String email, String password, LocalDate dob, SSN ssn) {
         this.name = name;
         this.address = address;
         this.email = email;
+        this.password = password;
         this.dob = dob;
         this.ssn = ssn;
     }
@@ -38,6 +41,12 @@ abstract class Person {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     public LocalDate getDob() {

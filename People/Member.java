@@ -1,19 +1,16 @@
 package People;
 
-import java.time.LocalDate;
-
 import Utils.SSN;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Member extends Person {
     int UID;
+    ArrayList<char[]> checkedCollections;  //Array of LibraryCollection identifiers checked out by Member (Initial Fix)
 
-    //! Requires a default constructor as Person is inherited, but don't know what to include in it
-    public Member() {
-    }
-
-    public Member(String name, String address, String email, LocalDate dob, SSN ssn) {
-        super(name, address, email, dob, ssn);
-        UID = hashCode(name, address, email, dob);
+    Member(String name, String address, String email, String password, LocalDate dob, SSN ssn) {
+        super(name, address, email, password, dob, ssn);
+        UID = hashCode(name, address, email, dob); // Generate UID off of information
     }
 
     @Override
