@@ -1,6 +1,6 @@
 package People;
 
-import Utils.SSN;
+import Utils.*;
 import java.time.LocalDate;
 
 /*
@@ -10,16 +10,18 @@ Basic information relating to their name, address, email, password, dob, and ssn
 */
 abstract class Person {
     // Instance Variables
-    String name, address, email, password;
+    private String name, address;
 
-    LocalDate dob;
-    SSN ssn;
+    private Login login;
+    private Email email;
+    private LocalDate dob;
+    private SSN ssn;
 
-    Person(String name, String address, String email, String password, LocalDate dob, SSN ssn) {
+    Person(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         this.name = name;
         this.address = address;
         this.email = email;
-        this.password = password;
+        this.login = login;
         this.dob = dob;
         this.ssn = ssn;
     }
@@ -36,17 +38,17 @@ abstract class Person {
     public void setAddress(String address) {
         this.address = address;
     }
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
-    public void setEmail(String email) {
+    public void setEmail(Email email) {
         this.email = email;
     }
-    public String getPassword() {
-        return password;
+    public Login getPassword() {
+        return login;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(Login login) {
+        this.login = login;
     }
     
     public LocalDate getDob() {
