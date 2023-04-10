@@ -8,7 +8,7 @@ Person:
 The abstract class that all people inherit from
 Basic information relating to their name, address, email, password, dob, and ssn are avaiable here
 */
-abstract class Person {
+public abstract class Person {
     // Instance Variables
     private String name, address;
 
