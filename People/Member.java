@@ -4,8 +4,6 @@ import Utils.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import Collections.LibraryCollection;
-
 public abstract class Member extends Person {
     // The UUID given to each library member
     private UUID id;
