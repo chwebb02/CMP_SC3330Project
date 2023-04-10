@@ -8,7 +8,7 @@ LibraryCollection:
 The abstract class that all pieces of media inherit from
 Basic information relating to their accessibility, location, and identifiers are avaiable here
 */
-abstract class LibraryCollection {
+public abstract class LibraryCollection {
     // Hashmap to store all members of the collection, because databases are cringe
     public static HashMap<char[], LibraryCollection> collection = new HashMap<char[], LibraryCollection>();
 
