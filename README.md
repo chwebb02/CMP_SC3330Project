@@ -1,0 +1,33 @@
+# Class Project for CMP_SC 3330
+
+## Rubric Feature List
+ - [ ] LibraryCollection with Books, Newspapers, DVDs, and Journals
+	 - [ ] These can be shelved in sections: Arts, Sciences, Newspapers, and Law
+	 - [ ] All Collections have alphanumeric 6 character long UID
+	 - [ ] Books and DVDs have ISBN numbers
+	 - [ ] Newspapers and Jornals have ISSN numbers
+ - [ ] Employee Classes
+	 - [ ] Librarians: manage collections, help customers with resources, and manage memberships
+	 - [ ] Technicians: sort returned books and re-shelve them
+ - [ ] Member Classes
+	 - [ ] All members have a UID
+	 - [ ] Can borrow no more than 5 materials
+	 - [ ] A Professor supervises multiple students
+	 - [ ] A Student has one prof as advisor
+	 - [ ] External is people unaffiliated with the University
+ - [ ] Member Deadlines
+	 - [ ] Each material is kept max 2 weeks
+	 - [ ] An email is sent on the 12th days as a reminder
+	 - [ ] An email is sent on the 14th day reminding the material is due that day
+	 - [ ] Every day starting the 15th day, $1 is added to member's fees if the book isn't returned
+	 - [ ] An email is sent and a letter printed out and physically sent on the 28th day
+	 - [ ] On the 28th day the item is declared "lost"
+	 - [ ] On the 28th day the member is charged the full price of the item to their account
+	 - [ ] A Member may renew the item anytime before due for an additional two weeks
+ - [ ] Design a UML class diagram for LibraryCollection
+ - [ ] Reflect Sufficient Knowledge Acquired From This Course
+	 - [ ] Implement Exception handling
+	 - [ ] Implement Validation checks
+	 - [ ] Use Abstraction as appropriate
+ - [ ] Allow communication between classes with Events
+ - [x] Use version control like GitHub to maintain your progress
