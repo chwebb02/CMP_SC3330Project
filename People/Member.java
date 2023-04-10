@@ -11,13 +11,13 @@ public abstract class Member extends Person {
     private UUID id;
 
     // The libraryCollections that are checked out by this member
-    protected LibraryCollection[] checkedOut;
+    protected CheckedOutMedia[] checkedOut;
 
     Member(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         super(name, address, email, login, dob, ssn);
 
-        // I'm not sure if this works
-        id = new UUID(16, 0);
+        // This needs to be tested
+        id = UUID.randomUUID();
     }
 
     public UUID getUUID() {
