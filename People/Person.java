@@ -44,10 +44,10 @@ public abstract class Person {
     public void setEmail(Email email) {
         this.email = email;
     }
-    public Login getPassword() {
+    public Login getLogin() {
         return login;
     }
-    public void setPassword(Login login) {
+    public void setLogin(Login login) {
         this.login = login;
     }
     
