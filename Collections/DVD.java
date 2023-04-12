@@ -7,7 +7,7 @@ public class DVD extends LibraryCollection {
     // In memory storage of all of the DVDs in the collection
     public static HashMap<char[], DVD> dvdCollection = new HashMap<char[], DVD>();
 
-    DVD(char[] DOI, byte section) throws InvalidIdentifierSizeException {
+    public DVD(char[] DOI, SectionCode section) throws InvalidIdentifierSizeException {
         super(DOI, section);
         dvdCollection.put(identifier, this);
     }

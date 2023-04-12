@@ -1,20 +1,20 @@
 # Class Project for CMP_SC 3330
 
 ## Rubric Feature List
- - [ ] LibraryCollection with Books, Newspapers, DVDs, and Journals
-	 - [ ] These can be shelved in sections: Arts, Sciences, Newspapers, and Law
-	 - [ ] All Collections have alphanumeric 6 character long UID
-	 - [ ] Books and DVDs have ISBN numbers
-	 - [ ] Newspapers and Jornals have ISSN numbers
+ - [X] LibraryCollection with Books, Newspapers, DVDs, and Journals
+	 - [X] These can be shelved in sections: Arts, Sciences, Newspapers, and Law
+	 - [X] All Collections have alphanumeric 6 character long UID
+	 - [X] Books and DVDs have ISBN numbers
+	 - [X] Newspapers and Jornals have ISSN numbers
  - [ ] Employee Classes
 	 - [ ] Librarians: manage collections, help customers with resources, and manage memberships
 	 - [ ] Technicians: sort returned books and re-shelve them
  - [ ] Member Classes
-	 - [ ] All members have a UID
+	 - [X] All members have a UID
 	 - [ ] Can borrow no more than 5 materials
-	 - [ ] A Professor supervises multiple students
-	 - [ ] A Student has one prof as advisor
-	 - [ ] External is people unaffiliated with the University
+	 - [X] A Professor supervises multiple students
+	 - [X] A Student has one prof as advisor
+	 - [X] External is people unaffiliated with the University
  - [ ] Member Deadlines
 	 - [ ] Each material is kept max 2 weeks
 	 - [ ] An email is sent on the 12th days as a reminder
