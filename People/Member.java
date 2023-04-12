@@ -1,24 +1,28 @@
 package People;
 
-import Utils.SSN;
+import Utils.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.UUID;
 
-public class Member extends Person {
-    int UID;
-    ArrayList<char[]> checkedCollections;  //Array of LibraryCollection identifiers checked out by Member (Initial Fix)
+import Collections.LibraryCollection;
 
-    Member(String name, String address, String email, String password, LocalDate dob, SSN ssn) {
-        super(name, address, email, password, dob, ssn);
-        UID = hashCode(name, address, email, dob); // Generate UID off of information
+public abstract class Member extends Person {
+    // The UUID given to each library member
+    private UUID id;
+
+    // The libraryCollections that are checked out by this member
+    protected LibraryCollection[] checkedOut;
+
+    Member(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
+        super(name, address, email, login, dob, ssn);
+
+        // I'm not sure if this works
+        id = new UUID(16, 0);
     }
 
-    @Override
-    public int hashCode() {
-        return (int) name.hashCode() * address.hashCode() * email.hashCode() * dob.hashCode();
+    public UUID getUUID() {
+        return id;
     }
 
-    public int hashCode(String name, String address, String email, LocalDate dob) {
-        return (int) name.hashCode() * address.hashCode() * email.hashCode() * dob.hashCode();
-    }
+
 }
