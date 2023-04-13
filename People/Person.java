@@ -17,6 +17,9 @@ public abstract class Person {
     private LocalDate dob;
     private SSN ssn;
 
+    protected boolean entryGranted = false;         // If a login is successful, this will be set to true
+                                                    // Use this in subclasses for permission checking
+
     Person(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         this.name = name;
         this.address = address;
@@ -24,6 +27,17 @@ public abstract class Person {
         this.login = login;
         this.dob = dob;
         this.ssn = ssn;
+    }
+
+    // Tries to login, returns true or false to indicate whether it was successful
+    public boolean login(Login attempt) {
+        entryGranted = login.verify(attempt);
+        return entryGranted;
+    }
+
+    // Logs out a user
+    public void logout() {
+        entryGranted = false;
     }
 
     public String getName() {
@@ -58,7 +72,6 @@ public abstract class Person {
         this.dob = dob;
     }
 
-    // ToDo: Update with proper SSN implementation
     public SSN getSsn() {
         return ssn;
     }
