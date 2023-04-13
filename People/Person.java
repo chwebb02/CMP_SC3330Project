@@ -2,6 +2,7 @@ package People;
 
 import Utils.*;
 import java.time.LocalDate;
+import java.util.HashMap;
 
 /*
 Person:
@@ -9,6 +10,8 @@ The abstract class that all people inherit from
 Basic information relating to their name, address, email, password, dob, and ssn are avaiable here
 */
 public abstract class Person {
+    private static HashMap<String, Person> peopleDB = new HashMap<String, Person>();
+
     // Instance Variables
     private String name, address;
 
@@ -17,6 +20,9 @@ public abstract class Person {
     private LocalDate dob;
     private SSN ssn;
 
+    protected boolean entryGranted = false;         // If a login is successful, this will be set to true
+                                                    // Use this in subclasses for permission checking
+
     Person(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         this.name = name;
         this.address = address;
@@ -24,6 +30,21 @@ public abstract class Person {
         this.login = login;
         this.dob = dob;
         this.ssn = ssn;
+
+        peopleDB.put(name, this);
+    }
+
+    // Tries to login, returns true or false to indicate whether it was successful
+    public static boolean login(Login attempt) {
+        Person target = peopleDB.get(attempt.getUsername());
+
+        target.entryGranted = target.login.verify(attempt);
+        return target.entryGranted;
+    }
+
+    // Logs out a user
+    public void logout() {
+        entryGranted = false;
     }
 
     public String getName() {
@@ -58,7 +79,6 @@ public abstract class Person {
         this.dob = dob;
     }
 
-    // ToDo: Update with proper SSN implementation
     public SSN getSsn() {
         return ssn;
     }
