@@ -10,4 +10,8 @@ public class Login {
 
         return false;
     }
+
+    public String getUsername() {
+        return uname;
+    }
 }
