@@ -26,13 +26,14 @@ public abstract class Member extends Person {
         return id;
     }
 
-    public void checkOut(LibraryCollection media) {
+    public boolean checkOut(LibraryCollection media) {
         if (checkedOut.size() > 5) //If 5 already checked out return
-            return;
+            return false;
         if (!media.checkOut())     //If media can't be checked out return
-            return;
+            return false;
 
         CheckedOutMedia newMaterial = new CheckedOutMedia(media);
         checkedOut.add(newMaterial);
+        return true;
     }
 }
