@@ -7,13 +7,14 @@ import java.util.ArrayList;
 
 import Collections.LibraryCollection;
 import Utils.CheckedOutMedia;
+import People.Technician;
 
 public abstract class Member extends Person {
     // The UUID given to each library member
     private UUID id;
 
     // The libraryCollections that are checked out by this member
-    protected ArrayList<CheckedOutMedia> checkedOut = new ArrayList<CheckedOutMedia>(5);
+    protected ArrayList<LibraryCollection> checkedOut = new ArrayList<LibraryCollection>(5);
 
     Member(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         super(name, address, email, login, dob, ssn);
@@ -32,8 +33,15 @@ public abstract class Member extends Person {
         if (!media.checkOut())     //If media can't be checked out return
             return false;
 
-        CheckedOutMedia newMaterial = new CheckedOutMedia(media);
-        checkedOut.add(newMaterial);
+        checkedOut.add(media);
+        return true;
+    }
+
+    public boolean returnMedia(LibraryCollection media) {
+        if (!checkedOut.contains(media)) //If not in collection can't be returned
+            return false;
+
+        // Technician.returnMedia();
         return true;
     }
 }
