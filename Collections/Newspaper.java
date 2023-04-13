@@ -7,8 +7,8 @@ public class Newspaper extends LibraryCollection {
     // In memory storage of all of the newspapers in the collection
     public static HashMap<char[], Newspaper> newspaperCollection = new HashMap<char[], Newspaper>();
 
-    Newspaper(char[] ISSN, byte section) throws InvalidIdentifierSizeException {
-        super(ISSN, section);
+    public Newspaper(char[] ISSN, byte section) throws InvalidIdentifierSizeException {
+        super(ISSN, LibraryCollection.SectionCode.NEWSPAPER);
         newspaperCollection.put(identifier, this);
     }
 

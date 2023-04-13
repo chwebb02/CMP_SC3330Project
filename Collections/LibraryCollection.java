@@ -9,15 +9,22 @@ The abstract class that all pieces of media inherit from
 Basic information relating to their accessibility, location, and identifiers are avaiable here
 */
 public abstract class LibraryCollection {
+    public static enum SectionCode {
+        ARTS,
+        SCIENCES,
+        NEWSPAPER,
+        LAW,
+    };
+
     // Hashmap to store all members of the collection, because databases are cringe
     public static HashMap<char[], LibraryCollection> collection = new HashMap<char[], LibraryCollection>();
 
     protected char[] identifier;                // The ISBN or ISSN of a book
-    private byte section;                       // The numeric code corresponding to the section the media belongs to
+    private SectionCode section;                       // The numeric code corresponding to the section the media belongs to
     private boolean isCheckedOut = false;       // Is the piece of media already checked out?
 
     // No default constructor, too much headache
-    LibraryCollection(char[] id, byte section) throws InvalidIdentifierSizeException{
+    public LibraryCollection(char[] id, SectionCode section) throws InvalidIdentifierSizeException{
         if (id.length != 6) {
             throw new InvalidIdentifierSizeException("The size of the input was " + id.length + ", when it needed to be of size 6");
         } else {
@@ -33,7 +40,7 @@ public abstract class LibraryCollection {
     }
 
     // Returns the numeric representation of the section 
-    public byte getSection() {
+    public SectionCode getSection() {
         return section;
     }
 

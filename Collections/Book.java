@@ -7,7 +7,7 @@ public class Book extends LibraryCollection {
     // In memory storage of all books in the collection
     public static HashMap<char[], Book> bookCollection = new HashMap<char[], Book>();
 
-    Book(char[] ISBN, byte section) throws InvalidIdentifierSizeException {
+    public Book(char[] ISBN, SectionCode section) throws InvalidIdentifierSizeException {
         super(ISBN, section);
         bookCollection.put(identifier, this);
     }
