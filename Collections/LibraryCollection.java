@@ -44,6 +44,10 @@ public abstract class LibraryCollection {
         return section;
     }
 
+    public boolean isCheckedOut() {
+        return isCheckedOut;
+    }
+
     // Attempts to check out a book, if it is already checked out, return false
     // otherwise return true
     // Calling function will have to ensure other conditions (such as available slots for member)
@@ -52,6 +56,7 @@ public abstract class LibraryCollection {
             return false;
         }
 
+        isCheckedOut = true;
         return true;
     }
 
