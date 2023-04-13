@@ -11,7 +11,7 @@ public class CheckedOutMedia {
     private LocalDate checkOutDate;                 // The date the media was checked out
     private LocalDate dueDate;                      // The date that the media is due
 
-    CheckedOutMedia(LibraryCollection media) {
+    public CheckedOutMedia(LibraryCollection media) {
         checkedOutMedia = media;
         checkOutDate = LocalDate.now();
         dueDate = checkOutDate.plusDays(14);
