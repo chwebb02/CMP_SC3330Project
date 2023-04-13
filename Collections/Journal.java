@@ -7,7 +7,7 @@ public class Journal extends LibraryCollection {
     // In memory storage of all of the journals in the collection
     public static HashMap<char[], Journal> journalCollection = new HashMap<char[], Journal>();
 
-    Journal(char[] ISSN, byte section) throws InvalidIdentifierSizeException {
+    public Journal(char[] ISSN, SectionCode section) throws InvalidIdentifierSizeException {
         super(ISSN, section);
         journalCollection.put(identifier, this);
     }
