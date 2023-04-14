@@ -98,6 +98,10 @@ public abstract class LibraryCollection {
         return section;
     }
 
+    public boolean isCheckedOut() {
+        return isCheckedOut;
+    }
+
     // Attempts to check out a book, if it is already checked out, return false
     // otherwise return true
     // Calling function will have to ensure other conditions (such as available slots for member)
@@ -105,11 +109,11 @@ public abstract class LibraryCollection {
         if(isCheckedOut) {
             return false;
         }
-
+        
         // Check out the item
         CheckedOutMedia item = new CheckedOutMedia(this);
-
         checkedOut.put(this.identifier, item);
+       
         isCheckedOut = true;
         return true;
     }
