@@ -1,6 +1,14 @@
 package Collections;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
+
+import Utils.CheckedOutMedia;
+
 import CustomExceptions.InvalidIdentifierSizeException;
 
 /*
@@ -17,10 +25,11 @@ public abstract class LibraryCollection {
     };
 
     // Hashmap to store all members of the collection, because databases are cringe
-    public static HashMap<char[], LibraryCollection> collection = new HashMap<char[], LibraryCollection>();
+    private static HashMap<char[], LibraryCollection> collection = new HashMap<char[], LibraryCollection>();
+    private static HashMap<char[], CheckedOutMedia> checkedOut = new HashMap<char[], CheckedOutMedia>();
 
     protected char[] identifier;                // The ISBN or ISSN of a book
-    private SectionCode section;                       // The numeric code corresponding to the section the media belongs to
+    private SectionCode section;                // The numeric code corresponding to the section the media belongs to
     private boolean isCheckedOut = false;       // Is the piece of media already checked out?
 
     // No default constructor, too much headache
@@ -34,8 +43,53 @@ public abstract class LibraryCollection {
         }        
     }
 
+    // Save all objects in the hashmaps
+    public static boolean save() {
+        try {
+            String fileName = "../Data/collection.txt";
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            for (LibraryCollection obj : collection.values()) {   
+                oos.writeObject(obj);
+            }
+
+            oos.close();
+            fos.close();
+        } catch (IOException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    // Load all objects into the hashmaps
+    public static boolean load() {
+        try {
+            String fileName = "../Data/collection.txt";
+            FileInputStream fis = new FileInputStream(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            LibraryCollection obj;
+            do {
+                obj = (LibraryCollection) ois.readObject();
+                collection.put(obj.identifier, obj);
+            } while (obj != null);
+
+            ois.close();
+            fis.close();
+
+        } catch (IOException e) {
+            return false;
+        } catch (ClassNotFoundException f) {
+            return false;
+        }
+
+        return true;
+    }
+
     // Return value for getISBN or getISSN on subclasses
-    public char[] getID() {
+    protected char[] getID() {
         return identifier;
     }
 
@@ -55,13 +109,18 @@ public abstract class LibraryCollection {
         if(isCheckedOut) {
             return false;
         }
-
+        
+        // Check out the item
+        CheckedOutMedia item = new CheckedOutMedia(this);
+        checkedOut.put(this.identifier, item);
+       
         isCheckedOut = true;
         return true;
     }
 
     // Returns a book to the library, thus setting checkedOut status to false
     public void returnToCollection() {
+        checkedOut.remove(this.identifier);
         isCheckedOut = false;
     }
 
