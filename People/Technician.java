@@ -5,30 +5,29 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Stack;
 
-import Collections.*;
+import Collections.LibraryCollection;
 
 
  
  public class Technician extends Employee {
-   private Stack<Collections.LibraryCollection> TBR;
-
-
-    public void pushTBR(Collections.LibraryCollection item)
-    {
-        TBR.push(item);
-    }
-
-    public void pullTBR()
-    {
-        TBR.pop().returnToCollection();
-    }
+   private static Stack<LibraryCollection> toBeReshelved;
 
     Technician(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         super(name, address, email, login, dob, ssn);
     }
 
+    public static void addToShelveQueue(LibraryCollection item)
+    {
+        toBeReshelved.push(item);
+    }
 
+    public static void removeFromShelveQueue(LibraryCollection item)
+    {
+        toBeReshelved.pop().returnToCollection();
+    }
 
-
+    public static void recieveMedia(LibraryCollection media) {
+        addToShelveQueue(media);
+    }
 
 }

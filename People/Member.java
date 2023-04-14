@@ -41,7 +41,7 @@ public abstract class Member extends Person {
         if (!checkedOut.contains(media)) //If not in collection can't be returned
             return false;
 
-        // Technician.returnMedia();
+        Technician.recieveMedia(media);
         return true;
     }
 }
