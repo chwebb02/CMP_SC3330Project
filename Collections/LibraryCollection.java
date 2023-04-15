@@ -98,6 +98,7 @@ public abstract class LibraryCollection {
         return section;
     }
 
+    // Return the status as to whether a piece of media has been checked out
     public boolean isCheckedOut() {
         return isCheckedOut;
     }
@@ -128,4 +129,14 @@ public abstract class LibraryCollection {
     public static int getCollectionSize() {
         return collection.size();
     }
+
+    // Look up a piece of media by ISBN/ISSN
+    // Returns the media object itself, or null if it is not in the collection
+    public static LibraryCollection lookupMedia(char[] id) throws InvalidIdentifierSizeException {
+        if (id.length != 6) {
+            throw new InvalidIdentifierSizeException("ISBN/ISSN should be exactly 6 characters");
+        }
+
+        return collection.get(id);
+    }    
 }
