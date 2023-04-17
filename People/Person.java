@@ -4,12 +4,19 @@ import Utils.*;
 import java.time.LocalDate;
 import java.util.HashMap;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 /*
 Person:
 The abstract class that all people inherit from
 Basic information relating to their name, address, email, password, dob, and ssn are avaiable here
 */
-public abstract class Person {
+public abstract class Person implements Serializable {
     private static HashMap<String, Person> peopleDB = new HashMap<String, Person>();
 
     // Instance Variables
@@ -91,4 +98,23 @@ public abstract class Person {
         return "Person [name=" + name + ", address=" + address + ", email=" + email + ", dob=" + dob + ", ssn=" + ssn
                 + "]";
     }
+
+    public void saveTo(String fileName) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            out.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static Object loadFrom(String fileName) {
+        Object person = null;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
+            person = (Object) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return person;
+    }
+
 }
