@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.ArrayList;
 
 import Collections.LibraryCollection;
+import LibraryEvents.newMember;
 import Utils.CheckedOutMedia;
 import People.Technician;
 
@@ -16,7 +17,7 @@ public abstract class Member extends Person {
     // The libraryCollections that are checked out by this member
     protected ArrayList<LibraryCollection> checkedOut = new ArrayList<LibraryCollection>(5);
 
-    Member(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
+   public Member(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         super(name, address, email, login, dob, ssn);
 
         // This needs to be tested
@@ -39,9 +40,13 @@ public abstract class Member extends Person {
 
     public boolean returnMedia(LibraryCollection media) {
         if (!checkedOut.contains(media)) //If not in collection can't be returned
+        {
             return false;
-
-        // Technician.returnMedia();
+        }
+        else
+        {
+        Technician.pushTBR(media);
+        }
         return true;
     }
 }

@@ -23,7 +23,7 @@ public abstract class Person {
     protected boolean entryGranted = false;         // If a login is successful, this will be set to true
                                                     // Use this in subclasses for permission checking
 
-    Person(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
+  public  Person(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         this.name = name;
         this.address = address;
         this.email = email;

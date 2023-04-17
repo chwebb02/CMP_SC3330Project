@@ -9,16 +9,16 @@ import Collections.*;
 
 
  
- public class Technician extends Employee {
-   private Stack<Collections.LibraryCollection> TBR;
+ abstract public class Technician extends Employee {
+  static private Stack<Collections.LibraryCollection> TBR;
 
 
-    public void pushTBR(Collections.LibraryCollection item)
+    static public void pushTBR(Collections.LibraryCollection item)
     {
         TBR.push(item);
     }
 
-    public void pullTBR()
+    static public void pullTBR()
     {
         TBR.pop().returnToCollection();
     }
