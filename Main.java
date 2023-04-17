@@ -1,9 +1,8 @@
-import People.*;
-
 import java.util.Scanner;
 
-import Collections.*;
+import Collections.LibraryCollection;
 import Utils.Login;
+import People.Person;
 
 public class Main {
     public static Login logIn() {
@@ -29,6 +28,11 @@ public class Main {
         } while (Person.lookup(attempt.getUsername()).getLogin().verify(attempt));      // This is gross but also awesome
         Person session = Person.lookup(attempt.getUsername());
 
+        // Enter the session loop, logout when ended
         session.menu();
+        session.logout();
+
+        LibraryCollection.save();
+        // Person.save();           // This needs to be implemented
     }
 }
