@@ -86,6 +86,13 @@ public abstract class Person {
         this.ssn = ssn;
     }
 
+    public static Person lookup(String name) {
+        return peopleDB.get(name);
+    }
+
+    // Abstract menu method for all people subclasses
+    public abstract void menu();
+
     @Override
     public String toString() {
         return "Person [name=" + name + ", address=" + address + ", email=" + email + ", dob=" + dob + ", ssn=" + ssn

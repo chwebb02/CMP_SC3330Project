@@ -6,8 +6,6 @@ import java.util.UUID;
 import java.util.ArrayList;
 
 import Collections.LibraryCollection;
-import Utils.CheckedOutMedia;
-import People.Technician;
 
 public abstract class Member extends Person {
     // The UUID given to each library member

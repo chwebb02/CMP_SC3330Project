@@ -2,7 +2,6 @@ package People;
 
 import Utils.*;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Stack;
 
 import Collections.LibraryCollection;
@@ -30,4 +29,7 @@ import Collections.LibraryCollection;
         addToShelveQueue(media);
     }
 
+    public void menu() {
+        // TODO
+    }
 }
