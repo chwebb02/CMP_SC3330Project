@@ -11,6 +11,7 @@ import Utils.CheckedOutMedia;
 
 import CustomExceptions.InvalidIdentifierSizeException;
 
+
 /*
 LibraryCollection:
 The abstract class that all pieces of media inherit from
@@ -128,4 +129,11 @@ public abstract class LibraryCollection {
     public static int getCollectionSize() {
         return collection.size();
     }
+    public static LibraryCollection lookupMedia(char[] id) throws InvalidIdentifierSizeException {
+        if (id.length != 6) {
+            throw new InvalidIdentifierSizeException("ISBN/ISSN should be exactly 6 characters");
+        }
+
+        return collection.get(id);
+    }    
 }
