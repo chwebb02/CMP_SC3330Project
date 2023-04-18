@@ -10,6 +10,10 @@ public class Student extends Member {
         super(name, address, email, login, dob, ssn);
     }
 
+    public Student(Object s) {
+        super(s);
+    }
+
     public Professor getMentor() {
         return mentor;
     }

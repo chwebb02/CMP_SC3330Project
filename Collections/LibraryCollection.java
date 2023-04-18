@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -26,22 +27,31 @@ public abstract class LibraryCollection {
     };
 
     // Hashmap to store all members of the collection, because databases are cringe
-    private static HashMap<char[], LibraryCollection> collection = new HashMap<char[], LibraryCollection>();
-    private static HashMap<char[], CheckedOutMedia> checkedOut = new HashMap<char[], CheckedOutMedia>();
+    private static HashMap<String, LibraryCollection> collection = new HashMap<String, LibraryCollection>();
+    private static HashMap<String, CheckedOutMedia> checkedOut = new HashMap<String, CheckedOutMedia>();
 
     protected char[] identifier;                // The ISBN or ISSN of a book
     private SectionCode section;                // The numeric code corresponding to the section the media belongs to
     private boolean isCheckedOut = false;       // Is the piece of media already checked out?
 
     // No default constructor, too much headache
-    public LibraryCollection(char[] id, SectionCode section) throws InvalidIdentifierSizeException{
+    protected LibraryCollection(char[] id, SectionCode section) throws InvalidIdentifierSizeException{
+        System.out.println(id);
         if (id.length != 6) {
             throw new InvalidIdentifierSizeException("The size of the input was " + id.length + ", when it needed to be of size 6");
         } else {
             identifier = id;
             this.section = section;
-            collection.put(id, this);
+            System.out.println(new String(id));
+            collection.put(new String(id), this);
         }        
+    }
+
+    public static void test() {
+        for (String key : collection.keySet()) {
+            System.out.println(key);
+            System.out.println(collection.get(key).toString());
+        }
     }
 
     // Save all objects in the hashmaps
@@ -74,7 +84,7 @@ public abstract class LibraryCollection {
             LibraryCollection obj;
             do {
                 obj = (LibraryCollection) ois.readObject();
-                collection.put(obj.identifier, obj);
+                collection.put(obj.identifier.toString(), obj);
             } while (obj != null);
 
             ois.close();
@@ -113,7 +123,7 @@ public abstract class LibraryCollection {
         
         // Check out the item
         CheckedOutMedia item = new CheckedOutMedia(this);
-        checkedOut.put(this.identifier, item);
+        checkedOut.put(new String(this.identifier), item);
        
         isCheckedOut = true;
         return true;
@@ -130,7 +140,11 @@ public abstract class LibraryCollection {
         return collection.size();
     }
 
-    public static boolean removeFromCollection(char[] id) {
+    public static LibraryCollection getMedia(String id) {
+        return collection.get(id);
+    }
+
+    public static boolean removeFromCollection(String id) {
         if (collection.remove(id) != null)
             return true;
         else

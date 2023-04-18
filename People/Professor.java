@@ -11,6 +11,10 @@ public class Professor extends Member {
         super(name, address, email, login, dob, ssn);
     }
 
+    public Professor(Object mem) {
+        super(mem);
+    }
+
     public boolean addStudent(Student student) {
         if (mentees.contains(student)) {
             return false;

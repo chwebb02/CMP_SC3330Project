@@ -23,6 +23,10 @@ public abstract class Member extends Person {
         id = UUID.randomUUID();
     }
 
+    Member(Object mem) {
+        super(mem);
+    }
+
     public UUID getUUID() {
         return id;
     }

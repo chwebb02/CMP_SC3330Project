@@ -44,12 +44,35 @@ public abstract class Person implements Serializable {
         peopleDB.put(name, this);
     }
 
+    Person(Object ps) {
+        Person p = (Person) ps;
+        this.name = p.name;
+        this.address = p.address;
+        this.email = p.email;
+        this.login = p.login;
+        this.dob = p.dob;
+        this.ssn = p.ssn;
+
+        peopleDB.put(p.name, this);
+    }
+
+    public static void test() {
+        for (String key : peopleDB.keySet()) {
+            System.out.println(key);
+            System.out.println(peopleDB.get(key).toString());
+        }
+    }
+
     // Tries to login, returns true or false to indicate whether it was successful
     public static boolean login(Login attempt) {
         Person target = peopleDB.get(attempt.getUsername());
 
         target.entryGranted = target.login.verify(attempt);
         return target.entryGranted;
+    }
+
+    public static Person getPerson(String name) {
+        return peopleDB.get(name);
     }
 
     public static boolean removePerson(String name) {

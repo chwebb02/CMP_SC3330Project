@@ -89,6 +89,14 @@ class Main {
         Member mem = (Member) Person.loadFrom("membershipdatabasefile.txt");
         System.out.println("Loaded");
         System.out.println(mem.toString());
+        if (mem instanceof Student)
+            new Student(mem);
+        if (mem instanceof Professor)
+            new Professor(mem);
+        if (mem instanceof External)
+            new External(mem);
+        // Member mem2 = (Member) Person.getPerson(mem.getName());
+        // System.out.println(mem2.toString());
     }
 
     public static void newCollectionEvent() {
@@ -160,7 +168,7 @@ class Main {
     public static void newRemoveCollectionEvent() {
         Scanner scn = new Scanner(System.in);
         System.out.println("Media's ISSN/ISBN to remove: ");
-        char[] id = scn.nextLine().toCharArray();
+        String id = scn.nextLine();
 
         System.out.println("Removing " + id + "...");
         LibraryCollection.removeFromCollection(id);
@@ -226,6 +234,21 @@ class Main {
     }
 
     public static void newBorrowsEvent() {
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Member's Name: ");
+        String name = scn.nextLine();
+        Member mem = (Member) Person.getPerson(name);
+
+        System.out.println("Media's ISSN/ISBN to borrow: ");
+        String id = scn.nextLine();
+        LibraryCollection media = LibraryCollection.getMedia(id);
+
+        System.out.println(name + " is borrowing " + id + "...");
+        if (mem.checkOut(media)) {
+            System.out.println(name + " borrowed " + id);
+        } else {
+            System.out.println(name + "couldn't borrow " + id);
+        }
     };
 
     public static void newReturnEvent() {
@@ -233,6 +256,15 @@ class Main {
 
     public static void newCheckOverdues() {
     };
+
+    public static void test() {
+        Person.test();
+        // Scanner scn = new Scanner(System.in);
+        // System.out.println("Media's ISSN/ISBN to borrow: ");
+        // String id = scn.nextLine();
+        // LibraryCollection media = LibraryCollection.getMedia(id);
+        // System.out.println(media.toString());
+    }
     // You are free to implememnt other events that you see needs to be implemented
 
     public static void main(String[] args) {
@@ -243,6 +275,9 @@ class Main {
         while (scanner.hasNextLine()) {
             int option = scanner.nextInt();
             switch (option) {
+                case 555:
+                    Main.test();
+                    break;
                 case 1:
                     Main.newMemberEvent();
                     break;
