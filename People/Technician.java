@@ -14,6 +14,10 @@ public class Technician extends Employee {
         super(name, address, email, login, dob, ssn);
     }
 
+    public Technician(Object emp) {
+        super(emp);
+    }
+
     public static void addToShelveQueue(LibraryCollection item) {
         toBeReshelved.push(item);
     }

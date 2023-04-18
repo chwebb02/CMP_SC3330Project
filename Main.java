@@ -87,16 +87,14 @@ class Main {
     public static void loadMemberEvent() {
         System.out.println("Loading member from file");
         Member mem = (Member) Person.loadFrom("membershipdatabasefile.txt");
-        System.out.println("Loaded");
-        System.out.println(mem.toString());
         if (mem instanceof Student)
             new Student(mem);
         if (mem instanceof Professor)
             new Professor(mem);
         if (mem instanceof External)
             new External(mem);
-        // Member mem2 = (Member) Person.getPerson(mem.getName());
-        // System.out.println(mem2.toString());
+        System.out.println("Loaded");
+        System.out.println(mem.toString());
     }
 
     public static void newCollectionEvent() {
@@ -228,9 +226,13 @@ class Main {
 
     public static void loadEmployeeEvent() {
         System.out.println("Loading employee from file");
-        Employee mem = (Employee) Person.loadFrom("employeedatabasefile.txt");
+        Employee emp = (Employee) Person.loadFrom("employeedatabasefile.txt");
+        if (emp instanceof Librarian)
+            new Librarian(emp);
+        if (emp instanceof Technician)
+            new Technician(emp);
         System.out.println("Loaded");
-        System.out.println(mem.toString());
+        System.out.println(emp.toString());
     }
 
     public static void newBorrowsEvent() {
