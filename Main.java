@@ -289,6 +289,7 @@ class Main {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             int option = scanner.nextInt();
+            try {
             switch (option) {
                 case 10:
                     Person.printPeople();
@@ -333,7 +334,11 @@ class Main {
                     System.out.println("Invalid operator.");
                     continue;
             }
+        } catch (Exception e) {
+            System.out.println("Invalid input errored out, please choose again");
         }
+        Main.mainMenu();
+    }
 
     }
 }
