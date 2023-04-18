@@ -14,6 +14,8 @@ class Main {
     public static void mainMenu() {
         System.out.println("University of Java Library System");
         System.out.println("Menu Options");
+        System.out.println("10. Print Members");
+        System.out.println("20. Print Books");
         System.out.println("1. New Membership");
         System.out.println("11. Load Membership from File");
         System.out.println("2. New Collection");
@@ -249,24 +251,31 @@ class Main {
         if (mem.checkOut(media)) {
             System.out.println(name + " borrowed " + id);
         } else {
-            System.out.println(name + "couldn't borrow " + id);
+            System.out.println(name + " couldn't borrow " + id);
         }
     };
 
     public static void newReturnEvent() {
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Member's Name: ");
+        String name = scn.nextLine();
+        Member mem = (Member) Person.getPerson(name);
+
+        System.out.println("Media's ISSN/ISBN to return: ");
+        String id = scn.nextLine();
+        LibraryCollection media = LibraryCollection.getMedia(id);
+
+        System.out.println(name + " is returning " + id + "...");
+        if (mem.returnMedia(media)) {
+            System.out.println(name + " returned " + id);
+        } else {
+            System.out.println(name + " couldn't return " + id);
+        }
     };
 
     public static void newCheckOverdues() {
     };
 
-    public static void test() {
-        Person.test();
-        // Scanner scn = new Scanner(System.in);
-        // System.out.println("Media's ISSN/ISBN to borrow: ");
-        // String id = scn.nextLine();
-        // LibraryCollection media = LibraryCollection.getMedia(id);
-        // System.out.println(media.toString());
-    }
     // You are free to implememnt other events that you see needs to be implemented
 
     public static void main(String[] args) {
@@ -277,8 +286,11 @@ class Main {
         while (scanner.hasNextLine()) {
             int option = scanner.nextInt();
             switch (option) {
-                case 555:
-                    Main.test();
+                case 10:
+                    Person.printPeople();
+                    break;
+                case 20:
+                    LibraryCollection.printCollection();
                     break;
                 case 1:
                     Main.newMemberEvent();

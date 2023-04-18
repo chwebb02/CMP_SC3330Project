@@ -47,11 +47,8 @@ public abstract class LibraryCollection {
         }        
     }
 
-    public static void test() {
-        for (String key : collection.keySet()) {
-            System.out.println(key);
-            System.out.println(collection.get(key).toString());
-        }
+    public static void printCollection() {
+        System.out.println(collection);
     }
 
     // Save all objects in the hashmaps
@@ -141,6 +138,10 @@ public abstract class LibraryCollection {
     }
 
     public static LibraryCollection getMedia(String id) {
+        return collection.get(id);
+    }
+
+    public static LibraryCollection getCheckedOut(String id) {
         return collection.get(id);
     }
 

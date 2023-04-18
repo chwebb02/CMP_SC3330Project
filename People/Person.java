@@ -56,11 +56,8 @@ public abstract class Person implements Serializable {
         peopleDB.put(p.name, this);
     }
 
-    public static void test() {
-        for (String key : peopleDB.keySet()) {
-            System.out.println(key);
-            System.out.println(peopleDB.get(key).toString());
-        }
+    public static void printPeople() {
+        System.out.println(peopleDB);
     }
 
     // Tries to login, returns true or false to indicate whether it was successful
