@@ -16,13 +16,13 @@
 	 - [X] A Student has one prof as advisor
 	 - [X] External is people unaffiliated with the University
  - [ ] Member Deadlines
-	 - [ ] Each material is kept max 2 weeks
-	 - [ ] An email is sent on the 12th days as a reminder
-	 - [ ] An email is sent on the 14th day reminding the material is due that day
+	 - [X] Each material is kept max 2 weeks
+	 - [X] An email is sent on the 12th days as a reminder
+	 - [X] An email is sent on the 14th day reminding the material is due that day
 	 - [ ] Every day starting the 15th day, $1 is added to member's fees if the book isn't returned
-	 - [ ] An email is sent and a letter printed out and physically sent on the 28th day
-	 - [ ] On the 28th day the item is declared "lost"
-	 - [ ] On the 28th day the member is charged the full price of the item to their account
+	 - [X] An email is sent and a letter printed out and physically sent on the 28th day
+	 - [X] On the 28th day the item is declared "lost"
+	 - [X] On the 28th day the member is charged the full price of the item to their account
 	 - [ ] A Member may renew the item anytime before due for an additional two weeks
  - [ ] Design a UML class diagram for LibraryCollection
  - [ ] Reflect Sufficient Knowledge Acquired From This Course

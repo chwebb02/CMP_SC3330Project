@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import Utils.CheckedOutMedia;
+import People.Member;
 
 import CustomExceptions.InvalidIdentifierSizeException;
 
@@ -30,25 +31,59 @@ public abstract class LibraryCollection {
     private static HashMap<String, LibraryCollection> collection = new HashMap<String, LibraryCollection>();
     private static HashMap<String, CheckedOutMedia> checkedOut = new HashMap<String, CheckedOutMedia>();
 
-    protected char[] identifier;                // The ISBN or ISSN of a book
-    private SectionCode section;                // The numeric code corresponding to the section the media belongs to
-    private boolean isCheckedOut = false;       // Is the piece of media already checked out?
+    protected char[] identifier; // The ISBN or ISSN of a book
+    private SectionCode section; // The numeric code corresponding to the section the media belongs to
+    private boolean isCheckedOut = false; // Is the piece of media already checked out?
+    private float cost;
 
     // No default constructor, too much headache
-    protected LibraryCollection(char[] id, SectionCode section) throws InvalidIdentifierSizeException{
+    protected LibraryCollection(char[] id, SectionCode section, float cost) throws InvalidIdentifierSizeException {
         System.out.println(id);
         if (id.length != 6) {
-            throw new InvalidIdentifierSizeException("The size of the input was " + id.length + ", when it needed to be of size 6");
+            throw new InvalidIdentifierSizeException(
+                    "The size of the input was " + id.length + ", when it needed to be of size 6");
         } else {
             identifier = id;
             this.section = section;
+            this.cost = cost;
             System.out.println(new String(id));
             collection.put(new String(id), this);
-        }        
+        }
+    }
+
+    public float getCost() {
+        return cost;
+    }
+
+    public void setCost(float cost) {
+        this.cost = cost;
     }
 
     public static void printCollection() {
         System.out.println(collection);
+    }
+
+    // ! TODO ADD A WAY TO GET THE PERSON CHECKING OUT
+    public static void checkOverdues() {
+        for (HashMap.Entry<String, CheckedOutMedia> set : checkedOut.entrySet()) {
+            CheckedOutMedia com = set.getValue();
+            if (com.Warning())
+                System.out.println("Email to " + com.getOwner().getEmail() + ": Just a reminder "
+                        + com.getOwner().getName() + ", " + set.getKey() + " is due in 2 days");
+            if (com.dueDateCheck())
+                System.out.println("Email to " + com.getOwner().getEmail() + "Just a reminder "
+                        + com.getOwner().getName() + ", " + set.getKey() + " is due today");
+            if (com.LetterWarning()) {
+                System.out.println("Letter to " + com.getOwner().getAddress() + "Just a reminder "
+                        + com.getOwner().getName() + ", " + set.getKey() + " is due today");
+                System.out.println("Email to " + com.getOwner().getEmail() + "Just a reminder "
+                        + com.getOwner().getName() + ", " + set.getKey() + " is due today");
+            }
+            
+            com.isLate();
+
+            com.setLastChecked();
+        }
     }
 
     // Save all objects in the hashmaps
@@ -58,7 +93,7 @@ public abstract class LibraryCollection {
             FileOutputStream fos = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-            for (LibraryCollection obj : collection.values()) {   
+            for (LibraryCollection obj : collection.values()) {
                 oos.writeObject(obj);
             }
 
@@ -101,7 +136,7 @@ public abstract class LibraryCollection {
         return identifier;
     }
 
-    // Returns the numeric representation of the section 
+    // Returns the numeric representation of the section
     public SectionCode getSection() {
         return section;
     }
@@ -112,16 +147,17 @@ public abstract class LibraryCollection {
 
     // Attempts to check out a book, if it is already checked out, return false
     // otherwise return true
-    // Calling function will have to ensure other conditions (such as available slots for member)
-    public boolean checkOut() {
-        if(isCheckedOut) {
+    // Calling function will have to ensure other conditions (such as available
+    // slots for member)
+    public boolean checkOut(Member mem) {
+        if (isCheckedOut) {
             return false;
         }
-        
+
         // Check out the item
-        CheckedOutMedia item = new CheckedOutMedia(this);
+        CheckedOutMedia item = new CheckedOutMedia(this, mem);
         checkedOut.put(new String(this.identifier), item);
-       
+
         isCheckedOut = true;
         return true;
     }

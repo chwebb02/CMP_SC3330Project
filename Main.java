@@ -129,20 +129,23 @@ class Main {
         System.out.print("Enter Media Type (Book/DVD/Journal/Newspaper): ");
         String type = scn.nextLine();
 
+        System.out.print("Enter Price: ");
+        Float price = scn.nextFloat();
+
         LibraryCollection media;
         try {
             switch (type) {
                 case ("Book"):
-                    media = new Book(id, section);
+                    media = new Book(id, section, price);
                     break;
                 case ("DVD"):
-                    media = new DVD(id, section);
+                    media = new DVD(id, section, price);
                     break;
                 case ("Journal"):
-                    media = new Journal(id, section);
+                    media = new Journal(id, section, price);
                     break;
                 case ("Newspaper"):
-                    media = new Newspaper(id, section);
+                    media = new Newspaper(id, section, price);
                     break;
                 default:
                     return;
@@ -274,7 +277,7 @@ class Main {
     };
 
     public static void newCheckOverdues() {
-        
+        LibraryCollection.checkOverdues();
     };
 
     // You are free to implememnt other events that you see needs to be implemented

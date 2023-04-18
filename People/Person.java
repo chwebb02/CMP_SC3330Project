@@ -27,6 +27,25 @@ public abstract class Person implements Serializable {
     private LocalDate dob;
     private SSN ssn;
 
+    private float balance = 0;
+    private float fee = 0;
+
+    public float getBalance() {
+        return balance;
+    }
+
+    public float addBalance(float adder) {
+        return (this.balance += adder);
+    }
+
+    public float getFee() {
+        return fee;
+    }
+
+    public float addFee(float fee) {
+        return (this.fee += fee);
+    }
+
     protected boolean entryGranted = false; // If a login is successful, this will be set to true
                                             // Use this in subclasses for permission checking
 

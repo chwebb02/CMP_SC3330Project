@@ -34,7 +34,7 @@ public abstract class Member extends Person {
     public boolean checkOut(LibraryCollection media) {
         if (checkedOut.size() > 5) //If 5 already checked out return
             return false;
-        if (!media.checkOut())     //If media can't be checked out return
+        if (!media.checkOut(this))     //If media can't be checked out return
             return false;
 
         checkedOut.add(media);
