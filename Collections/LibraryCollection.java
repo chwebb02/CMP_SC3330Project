@@ -130,6 +130,13 @@ public abstract class LibraryCollection {
         return collection.size();
     }
 
+    public static boolean removeFromCollection(char[] id) {
+        if (collection.remove(id) != null)
+            return true;
+        else
+            return false;
+    }
+
     @Override
     public String toString() {
         return "LibraryCollection [identifier=" + Arrays.toString(identifier) + ", section=" + section

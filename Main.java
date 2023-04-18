@@ -157,6 +157,13 @@ class Main {
     };
 
     public static void newRemoveCollectionEvent() {
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Media's ISSN/ISBN to remove: ");
+        char[] id = scn.nextLine().toCharArray();
+
+        System.out.println("Removing " + id + "...");
+        LibraryCollection.removeFromCollection(id);
+        System.out.println("Removed " + id);
     };
 
     public static void newEmployeeEvent() {
