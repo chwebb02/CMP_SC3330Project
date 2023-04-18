@@ -147,6 +147,13 @@ class Main {
     }
 
     public static void newRemoveMemberEvent() {
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Person's name to remove: ");
+        String name = scn.nextLine();
+
+        System.out.println("Removing " + name + "...");
+        Person.removePerson(name);
+        System.out.println("Removed " + name);
     };
 
     public static void newRemoveCollectionEvent() {

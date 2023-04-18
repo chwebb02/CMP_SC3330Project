@@ -27,10 +27,13 @@ public abstract class Person implements Serializable {
     private LocalDate dob;
     private SSN ssn;
 
-    protected boolean entryGranted = false;         // If a login is successful, this will be set to true
-                                                    // Use this in subclasses for permission checking
+    protected boolean entryGranted = false; // If a login is successful, this will be set to true
+                                            // Use this in subclasses for permission checking
 
     Person(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
+        if (peopleDB.containsKey(name))
+            return;
+
         this.name = name;
         this.address = address;
         this.email = email;
@@ -49,6 +52,13 @@ public abstract class Person implements Serializable {
         return target.entryGranted;
     }
 
+    public static boolean removePerson(String name) {
+        if (peopleDB.remove(name) != null)
+            return true;
+        else
+            return false;
+    }
+
     // Logs out a user
     public void logout() {
         entryGranted = false;
@@ -57,31 +67,39 @@ public abstract class Person implements Serializable {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getAddress() {
         return address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
+
     public Email getEmail() {
         return email;
     }
+
     public void setEmail(Email email) {
         this.email = email;
     }
+
     public Login getLogin() {
         return login;
     }
+
     public void setLogin(Login login) {
         this.login = login;
     }
-    
+
     public LocalDate getDob() {
         return dob;
     }
+
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
@@ -89,6 +107,7 @@ public abstract class Person implements Serializable {
     public SSN getSsn() {
         return ssn;
     }
+
     public void setSsn(SSN ssn) {
         this.ssn = ssn;
     }
@@ -106,7 +125,7 @@ public abstract class Person implements Serializable {
             e.printStackTrace();
         }
     }
-    
+
     public static Object loadFrom(String fileName) {
         Object person = null;
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
