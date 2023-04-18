@@ -7,22 +7,18 @@ import java.util.Stack;
 
 import Collections.LibraryCollection;
 
+public class Technician extends Employee {
+    private static Stack<LibraryCollection> toBeReshelved;
 
- 
- public class Technician extends Employee {
-   private static Stack<LibraryCollection> toBeReshelved;
-
-    Technician(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
+    public Technician(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         super(name, address, email, login, dob, ssn);
     }
 
-    public static void addToShelveQueue(LibraryCollection item)
-    {
+    public static void addToShelveQueue(LibraryCollection item) {
         toBeReshelved.push(item);
     }
 
-    public static void removeFromShelveQueue(LibraryCollection item)
-    {
+    public static void removeFromShelveQueue(LibraryCollection item) {
         toBeReshelved.pop().returnToCollection();
     }
 

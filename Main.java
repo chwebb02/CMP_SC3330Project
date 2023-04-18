@@ -15,11 +15,12 @@ class Main {
         System.out.println("University of Java Library System");
         System.out.println("Menu Options");
         System.out.println("1. New Membership");
-        System.out.println("11. Load Membership");
+        System.out.println("11. Load Membership from File");
         System.out.println("2. New Collection");
         System.out.println("3. Remove Membership");
         System.out.println("4. Remove Item from Collection");
         System.out.println("5. New Employee");
+        System.out.println("51. Load Employee from File");
         System.out.println("6. Borrow Item");
         System.out.println("7. Return Item");
         System.out.println("8. Check overdues");
@@ -167,7 +168,62 @@ class Main {
     };
 
     public static void newEmployeeEvent() {
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Enter Employee info: ");
+
+        System.out.print("Enter Employee Name: ");
+        String name = scn.nextLine();
+        System.out.print("Enter Employee Address: ");
+        String address = scn.nextLine();
+
+        System.out.print("Enter Employee email: ");
+        String emailString = scn.nextLine();
+        Email email = new Email(emailString);
+
+        System.out.print("Enter Login Name: ");
+        String username = scn.nextLine();
+        System.out.print("Enter Password: ");
+        String pwd = scn.nextLine();
+        Login login = new Login(username, pwd);
+
+        System.out.print("Enter Employee Date of Birth (YYYY-MM-DD): ");
+        String dobString = scn.nextLine();
+        LocalDate dob = LocalDate.parse(dobString);
+
+        System.out.print("Enter Employee SSN: ");
+        String ssnString = scn.nextLine();
+        SSN ssn = new SSN(ssnString);
+
+        System.out.print("Enter Employee type (Librarian/Technician): ");
+        String emptype = scn.nextLine();
+        System.out.print("Creating a new employee...");
+
+        Employee emp;
+        switch (emptype) {
+            case ("Librarian"):
+                emp = new Librarian(name, address, email, login, dob, ssn);
+                break;
+            case ("Technician"):
+                emp = new Technician(name, address, email, login, dob, ssn);
+                break;
+            default:
+                return;
+        }
+
+        System.out.println("The employee name is: " + emp.getName());
+        System.out.println(emp.toString());
+
+        // Save the new member into the membership database
+        emp.saveTo("employeedatabasefile.txt");
+        System.out.println("New Employee Successfully Saved to file.");
     };
+
+    public static void loadEmployeeEvent() {
+        System.out.println("Loading employee from file");
+        Employee mem = (Employee) Person.loadFrom("employeedatabasefile.txt");
+        System.out.println("Loaded");
+        System.out.println(mem.toString());
+    }
 
     public static void newBorrowsEvent() {
     };
@@ -204,6 +260,9 @@ class Main {
                     break;
                 case 5:
                     Main.newEmployeeEvent();
+                    break;
+                case 51:
+                    Main.loadEmployeeEvent();
                     break;
                 case 6:
                     Main.newBorrowsEvent();
