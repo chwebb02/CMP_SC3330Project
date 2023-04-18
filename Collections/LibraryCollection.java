@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import Utils.CheckedOutMedia;
@@ -127,5 +128,11 @@ public abstract class LibraryCollection {
     // Returns the size of the library collection
     public static int getCollectionSize() {
         return collection.size();
+    }
+
+    @Override
+    public String toString() {
+        return "LibraryCollection [identifier=" + Arrays.toString(identifier) + ", section=" + section
+                + ", isCheckedOut=" + isCheckedOut + "]";
     }
 }

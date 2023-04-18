@@ -16,7 +16,7 @@ public class CheckedOutMedia {
     private LocalDate currDate;
     private boolean fullCharge;
 
-    CheckedOutMedia(LibraryCollection media) {
+    public CheckedOutMedia(LibraryCollection media) {
         checkedOutMedia = media;
         checkOutDate = LocalDate.now();
         currDate = LocalDate.now();
@@ -27,12 +27,13 @@ public class CheckedOutMedia {
         monthEndDate = checkOutDate.plusDays(28);
     }
 
-    public void counterDate()
-    {
-        currDate.plusDays(1);
-    }
+    // public void counterDate()
+    // {
+    //     currDate.plusDays(1);
+    // }
+
     public LocalDate getCurrentDate() {
-        return currDate;
+        return LocalDate.now();
     }
 
     public boolean Warning()

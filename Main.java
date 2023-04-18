@@ -81,7 +81,7 @@ class Main {
         // Save the new member into the membership database
         mem.saveTo("membershipdatabasefile.txt");
         System.out.println("New Member Successfully Saved to file.");
-    };
+    }
 
     public static void loadMemberEvent() {
         System.out.println("Loading member from file");
@@ -91,7 +91,60 @@ class Main {
     }
 
     public static void newCollectionEvent() {
-    };
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Enter Media info: ");
+
+        System.out.print("Enter Media Section (Arts/Sciences/Newspaper/Law): ");
+        String sectionString = scn.nextLine();
+        LibraryCollection.SectionCode section;
+        switch (sectionString) {
+            case ("Arts"):
+                section = LibraryCollection.SectionCode.ARTS;
+                break;
+            case ("Sciences"):
+                section = LibraryCollection.SectionCode.SCIENCES;
+                break;
+            case ("Newspaper"):
+                section = LibraryCollection.SectionCode.NEWSPAPER;
+                break;
+            case ("Law"):
+                section = LibraryCollection.SectionCode.LAW;
+                break;
+            default:
+                return;
+        }
+
+        System.out.print("Enter ISBN: ");
+        char[] id = scn.nextLine().toCharArray();
+
+        System.out.print("Enter Media Type (Book/DVD/Journal/Newspaper): ");
+        String type = scn.nextLine();
+
+        LibraryCollection media;
+        try {
+            switch (type) {
+                case ("Book"):
+                    media = new Book(id, section);
+                    break;
+                case ("DVD"):
+                    media = new DVD(id, section);
+                    break;
+                case ("Journal"):
+                    media = new Journal(id, section);
+                    break;
+                case ("Newspaper"):
+                    media = new Newspaper(id, section);
+                    break;
+                default:
+                    return;
+            }
+        } catch (Exception e) {
+            return;
+        }
+
+        System.out.println("Creating a new member...");
+        System.out.println(media.toString());
+    }
 
     public static void newRemoveMemberEvent() {
     };
