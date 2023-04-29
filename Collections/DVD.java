@@ -7,7 +7,7 @@ public class DVD extends LibraryCollection {
         super(ISBN, section, cost);
     }
 
-    public char[] getDOI() {
+    public char[] getISBN() {
         return identifier;
     }
 }

@@ -17,10 +17,11 @@ The abstract class that all people inherit from
 Basic information relating to their name, address, email, password, dob, and ssn are avaiable here
 */
 public abstract class Person implements Serializable {
-    private static HashMap<String, Person> peopleDB = new HashMap<String, Person>();
+    private static HashMap<String, Person> peopleDB = new HashMap<>();
 
     // Instance Variables
-    private String name, address;
+    private String name;
+    private String address;
 
     private Login login;
     private Email email;
@@ -35,7 +36,8 @@ public abstract class Person implements Serializable {
     }
 
     public float addBalance(float adder) {
-        return (this.balance += adder);
+        float returnVal = this.balance += adder;
+        return (returnVal);
     }
 
     public float getFee() {
@@ -43,7 +45,8 @@ public abstract class Person implements Serializable {
     }
 
     public float addFee(float fee) {
-        return (this.fee += fee);
+        float returnVal = this.fee += fee;
+        return (returnVal);
     }
 
     protected boolean entryGranted = false; // If a login is successful, this will be set to true

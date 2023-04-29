@@ -3,6 +3,7 @@ package People;
 import Utils.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Professor extends Member {
     ArrayList<Student> mentees;
@@ -28,7 +29,7 @@ public class Professor extends Member {
         return mentees.remove(student);
     }
 
-    public ArrayList<Student> getStudents() {
+    public List<Student> getStudents() {
         return mentees;
     }
 }

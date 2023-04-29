@@ -28,8 +28,8 @@ public abstract class LibraryCollection {
     };
 
     // Hashmap to store all members of the collection, because databases are cringe
-    private static HashMap<String, LibraryCollection> collection = new HashMap<String, LibraryCollection>();
-    private static HashMap<String, CheckedOutMedia> checkedOut = new HashMap<String, CheckedOutMedia>();
+    private static HashMap<String, LibraryCollection> collection = new HashMap<>();
+    private static HashMap<String, CheckedOutMedia> checkedOut = new HashMap<>();
 
     protected char[] identifier;                // The ISBN or ISSN of a book
     private SectionCode section;                // The numeric code corresponding to the section the media belongs to

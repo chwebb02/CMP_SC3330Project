@@ -6,8 +6,6 @@ import java.util.UUID;
 import java.util.ArrayList;
 
 import Collections.LibraryCollection;
-import Utils.CheckedOutMedia;
-import People.Technician;
 
 public abstract class Member extends Person {
     // The UUID given to each library member
@@ -16,14 +14,14 @@ public abstract class Member extends Person {
     // The libraryCollections that are checked out by this member
     protected ArrayList<LibraryCollection> checkedOut = new ArrayList<LibraryCollection>(5);
 
-    Member(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
+    public Member(String name, String address, Email email, Login login, LocalDate dob, SSN ssn) {
         super(name, address, email, login, dob, ssn);
 
         // This needs to be tested
         id = UUID.randomUUID();
     }
 
-    Member(Object mem) {
+    public Member(Object mem) {
         super(mem);
     }
 
