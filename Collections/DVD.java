@@ -3,8 +3,8 @@ package Collections;
 import CustomExceptions.InvalidIdentifierSizeException;
 
 public class DVD extends LibraryCollection {
-    public DVD(char[] ISSN, SectionCode section, float cost) throws InvalidIdentifierSizeException {
-        super(ISSN, section, cost);
+    public DVD(char[] ISBN, SectionCode section, float cost) throws InvalidIdentifierSizeException {
+        super(ISBN, section, cost);
     }
 
     public char[] getDOI() {
