@@ -31,22 +31,19 @@ public abstract class LibraryCollection {
     private static HashMap<String, LibraryCollection> collection = new HashMap<String, LibraryCollection>();
     private static HashMap<String, CheckedOutMedia> checkedOut = new HashMap<String, CheckedOutMedia>();
 
-    protected char[] identifier; // The ISBN or ISSN of a book
-    private SectionCode section; // The numeric code corresponding to the section the media belongs to
-    private boolean isCheckedOut = false; // Is the piece of media already checked out?
+    protected char[] identifier;                // The ISBN or ISSN of a book
+    private SectionCode section;                // The numeric code corresponding to the section the media belongs to
+    private boolean isCheckedOut = false;       // Is the piece of media already checked out?
     private float cost;
 
     // No default constructor, too much headache
     protected LibraryCollection(char[] id, SectionCode section, float cost) throws InvalidIdentifierSizeException {
-        System.out.println(id);
         if (id.length != 6) {
-            throw new InvalidIdentifierSizeException(
-                    "The size of the input was " + id.length + ", when it needed to be of size 6");
+            throw new InvalidIdentifierSizeException("The size of the input was " + id.length + ", when it needed to be of size 6");
         } else {
             identifier = id;
             this.section = section;
             this.cost = cost;
-            System.out.println(new String(id));
             collection.put(new String(id), this);
         }
     }
@@ -71,17 +68,16 @@ public abstract class LibraryCollection {
                 System.out.println("Email to " + com.getOwner().getEmail() + ": Just a reminder "
                         + com.getOwner().getName() + ", " + set.getKey() + " is due in 2 days");
             if (com.dueDateCheck())
-                System.out.println("Email to " + com.getOwner().getEmail() + "Just a reminder "
+                System.out.println("Email to " + com.getOwner().getEmail() + ": Just a reminder "
                         + com.getOwner().getName() + ", " + set.getKey() + " is due today");
             if (com.LetterWarning()) {
-                System.out.println("Letter to " + com.getOwner().getAddress() + "Just a reminder "
+                System.out.println("Letter to " + com.getOwner().getAddress() + ": Just a reminder "
                         + com.getOwner().getName() + ", " + set.getKey() + " is due today");
-                System.out.println("Email to " + com.getOwner().getEmail() + "Just a reminder "
+                System.out.println("Email to " + com.getOwner().getEmail() + ": Just a reminder "
                         + com.getOwner().getName() + ", " + set.getKey() + " is due today");
             }
             
             com.isLate();
-
             com.setLastChecked();
         }
     }
@@ -177,8 +173,8 @@ public abstract class LibraryCollection {
         return collection.get(id);
     }
 
-    public static LibraryCollection getCheckedOut(String id) {
-        return collection.get(id);
+    public static CheckedOutMedia getCheckedOut(String id) {
+        return checkedOut.get(id);
     }
 
     public static boolean removeFromCollection(String id) {
