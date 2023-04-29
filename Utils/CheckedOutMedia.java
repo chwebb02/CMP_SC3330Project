@@ -43,6 +43,14 @@ public class CheckedOutMedia {
         return LocalDate.now();
     }
 
+    public boolean renew() {
+        if (isLate()) return false;
+        TwelveDate = getCurrentDate().plusDays(12);
+        dueDate = getCurrentDate().plusDays(14);
+        monthEndDate = getCurrentDate().plusDays(28);
+        return true;
+    }
+
     public void setLastChecked() {
         lastChecked = getCurrentDate();
     }
