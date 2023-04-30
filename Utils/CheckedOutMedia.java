@@ -3,6 +3,7 @@ package Utils;
 import java.time.LocalDate;
 
 import Collections.LibraryCollection;
+import People.Member;
 
 // This class is a container for a Library Collection object that has been checked out
 // It contains the media, the checkout date, and the due date
@@ -13,26 +14,45 @@ public class CheckedOutMedia {
     private LocalDate monthEndDate;
     private LocalDate dueDate;// The date that the media is due
     private boolean lost;
-    private LocalDate currDate;
+    private LocalDate lastChecked;
     private boolean fullCharge;
+    private Member owner;      // Who checked it out
 
-    CheckedOutMedia(LibraryCollection media) {
+    public CheckedOutMedia(LibraryCollection media, Member mem) {
         checkedOutMedia = media;
         checkOutDate = LocalDate.now();
-        currDate = LocalDate.now();
+        // currDate = LocalDate.now();
         lost = false;
         fullCharge = false;
         TwelveDate = checkOutDate.plusDays(12);
         dueDate = checkOutDate.plusDays(14);
         monthEndDate = checkOutDate.plusDays(28);
+        owner = mem;
     }
 
-    public void counterDate()
-    {
-        currDate.plusDays(1);
+    public Member getOwner() {
+        return owner;
     }
+
+    // public void counterDate()
+    // {
+    //     currDate.plusDays(1);
+    // }
+
     public LocalDate getCurrentDate() {
-        return currDate;
+        return LocalDate.now();
+    }
+
+    public boolean renew() {
+        if (isLate()) return false;
+        TwelveDate = getCurrentDate().plusDays(12);
+        dueDate = getCurrentDate().plusDays(14);
+        monthEndDate = getCurrentDate().plusDays(28);
+        return true;
+    }
+
+    public void setLastChecked() {
+        lastChecked = getCurrentDate();
     }
 
     public boolean Warning()
@@ -68,6 +88,9 @@ public class CheckedOutMedia {
         {
             lost = true;
             fullCharge = true;
+            if (getCurrentDate() != lastChecked) {
+                owner.addFee(checkedOutMedia.getCost());
+            }
             return true;
         }
         else
@@ -78,6 +101,9 @@ public class CheckedOutMedia {
 
     public boolean isLate(LocalDate date) {
         if (date.isAfter(dueDate)) {
+            if (getCurrentDate() != lastChecked) {
+                owner.addFee(1f);
+            }
             return true;
         }
 
