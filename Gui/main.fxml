@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.mainController">
+   <children>
+      <VBox prefHeight="370.0" prefWidth="500.0" spacing="10.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="newMember" mnemonicParsing="false" onAction="#newMemberPressed" prefHeight="25.0" prefWidth="480.0" text="New Membership" />
+            <Button fx:id="newCollection" mnemonicParsing="false" onAction="#newCollectionPressed" prefHeight="25.0" prefWidth="480.0" text="New Collection" />
+            <Button fx:id="removeMember" layoutX="20.0" layoutY="56.0" mnemonicParsing="false" onAction="#removeMemberPressed" prefHeight="25.0" prefWidth="480.0" text="Remove Membership" />
+            <Button fx:id="removeItem" layoutX="20.0" layoutY="92.0" mnemonicParsing="false" onAction="#removeItemPressed" prefHeight="25.0" prefWidth="480.0" text="Remove Item from Collection" />
+            <Button fx:id="newEmployee" layoutX="20.0" layoutY="128.0" mnemonicParsing="false" onAction="#newEmployeePressed" prefHeight="25.0" prefWidth="480.0" text="New Employee" />
+            <Button fx:id="borrowItem" mnemonicParsing="false" onAction="#borrowItemPressed" prefHeight="25.0" prefWidth="480.0" text="Borrow Item" />
+            <Button fx:id="returnItem" mnemonicParsing="false" onAction="#returnItemPressed" prefHeight="25.0" prefWidth="480.0" text="Return Item" />
+            <Button fx:id="checkOverdue" mnemonicParsing="false" onAction="#checkOverduePressed" prefHeight="25.0" prefWidth="480.0" text="Check Overdues" />
+            <Button fx:id="editInfo" mnemonicParsing="false" onAction="#editInfoPressed" prefHeight="25.0" prefWidth="480.0" text="Edit Information" />
+            <Button fx:id="quit" mnemonicParsing="false" onAction="#quitPressed" prefHeight="25.0" prefWidth="480.0" text="Quit" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
