@@ -11,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.util.converter.LocalDateStringConverter;
 
 import java.io.IOException;
 
@@ -22,7 +21,6 @@ import People.External;
 import Utils.Login;
 import Utils.SSN;
 import Utils.Email;
-import java.time.LocalDate;
 
 public class newmemberform {
 
@@ -49,23 +47,18 @@ public class newmemberform {
     private TextField ssnBox;
 
     @FXML
+    private TextField passwordBox;
+
+    @FXML
     void exitPressed(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(getClass().getResource("main.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException error) {
-            System.exit(0);
-        }
+        goHome(event);
     }
 
     @FXML
     void savePressed(ActionEvent event) {
         RadioButton selectedRadioButton = (RadioButton) member.getSelectedToggle();
         String value = selectedRadioButton.getText();
-        Login login = new Login("1", "1");
+        Login login = new Login(nameBox.getText(), passwordBox.getText());
         SSN ssn = new SSN(ssnBox.getText());
         Email email = new Email(emailBox.getText());
 
@@ -85,6 +78,18 @@ public class newmemberform {
         }
 
         System.out.println(mem.toString());
+        goHome(event);
     }
 
+    private void goHome(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getResource("main.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException error) {
+            System.exit(0);
+        }
+    }
 }
