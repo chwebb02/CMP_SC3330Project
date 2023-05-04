@@ -17,54 +17,35 @@ public class mainController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private FXMLLoader load;
 
     @FXML
-    void borrowItemPressed(ActionEvent event) {
-
+    void borrowItemPressed(ActionEvent event)  throws IOException {
+        changeTo(event, "newmemberform.fxml");
     }
 
     @FXML
-    void checkOverduePressed(ActionEvent event) {
-
+    void checkOverduePressed(ActionEvent event)  throws IOException {
+        changeTo(event, "newmemberform.fxml");
     }
 
     @FXML
-    void editInfoPressed(ActionEvent event) {
-
+    void editInfoPressed(ActionEvent event)  throws IOException {
+        changeTo(event, "newmemberform.fxml");
     }
 
     @FXML
-    void newCollectionPressed(ActionEvent event) {
-        try {
-            load = new FXMLLoader();
-            root = load.load(getClass().getResource("newcollectionform.fxml"));
-            load.setClassLoader(getClass().getClassLoader());
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException error) {
-            System.exit(0);
-        }
+    void newCollectionPressed(ActionEvent event)  throws IOException {
+        changeTo(event, "newmemberform.fxml");
     }
 
     @FXML
-    void newEmployeePressed(ActionEvent event) {
-
+    void newEmployeePressed(ActionEvent event)  throws IOException {
+        changeTo(event, "newmemberform.fxml");
     }
 
     @FXML
-    void newMemberPressed(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(getClass().getResource("newmemberform.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException error) {
-            System.exit(0);
-        }
+    void newMemberPressed(ActionEvent event) throws IOException {
+        changeTo(event, "newmemberform.fxml");
     }
 
     @FXML
@@ -73,18 +54,25 @@ public class mainController {
     }
 
     @FXML
-    void removeItemPressed(ActionEvent event) {
-
+    void removeItemPressed(ActionEvent event)  throws IOException {
+        changeTo(event, "newmemberform.fxml");
     }
 
     @FXML
-    void removeMemberPressed(ActionEvent event) {
-
+    void removeMemberPressed(ActionEvent event)  throws IOException {
+        changeTo(event, "newmemberform.fxml");
     }
 
     @FXML
-    void returnItemPressed(ActionEvent event) {
-
+    void returnItemPressed(ActionEvent event)  throws IOException {
+        changeTo(event, "newmemberform.fxml");
     }
 
+    private void changeTo(ActionEvent event, String fname) throws IOException {
+        root = FXMLLoader.load(getClass().getResource(fname));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -54,6 +54,7 @@ public class newmemberform {
         goHome(event);
     }
 
+    // Handles the form
     @FXML
     void savePressed(ActionEvent event) {
         RadioButton selectedRadioButton = (RadioButton) member.getSelectedToggle();
@@ -81,6 +82,7 @@ public class newmemberform {
         goHome(event);
     }
 
+    // Function to change scene to menu
     private void goHome(ActionEvent event) {
         try {
             root = FXMLLoader.load(getClass().getResource("main.fxml"));
