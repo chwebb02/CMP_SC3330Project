@@ -19,7 +19,7 @@ public class GUIExample extends Application
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
-        stage.setTitle("Main Menu");
+        stage.setTitle("Library GUI");
         stage.setScene(scene);
         stage.show();
     }
