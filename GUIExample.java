@@ -12,7 +12,7 @@ public class GUIExample extends Application
     public void start(Stage stage) throws Exception
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("./gui/main.fxml"));
+        loader.setLocation(getClass().getResource("Gui/main.fxml"));
 
         loader.setClassLoader(getClass().getClassLoader());
 
