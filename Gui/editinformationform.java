@@ -58,6 +58,8 @@ public class editinformationform {
         boolean canDo = Person.login(attempt);
 
         if (!canDo) {
+            // Make this display on GUI if I have time
+            System.out.println("Unable to change info (invalid login)!");
             return;
         } else {
             Person session = Person.getPerson(attempt.getUsername());
@@ -70,6 +72,7 @@ public class editinformationform {
             session.setSsn(new SSN(ssnBox.getText()));
             session.setDob(dobBox.getValue());
 
+            System.out.println("Changed! Data: " + session + "\n\n");
             exitPressedEdit(event);
         }
     }

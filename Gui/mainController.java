@@ -69,8 +69,6 @@ public class mainController {
     }
 
     private void changeTo(ActionEvent event, String fname) throws IOException {    
-        Person.printPeople();
-        
         root = FXMLLoader.load(getClass().getResource(fname));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
