@@ -48,30 +48,29 @@ public class editinformationform {
     private TextField ssnBox;
 
     @FXML
-    private void exitPressed(ActionEvent event) {
+    void exitPressedEdit(ActionEvent event) {
         goHome(event);
     }
 
-    // Confirm button
     @FXML
-    private void savePressed(ActionEvent event) {
-        Login attempt = new Login(nameBox1.toString(), passwordBox1.toString());
+    void confirmEditPressed(ActionEvent event) {
+        Login attempt = new Login(nameBox1.getText(), passwordBox1.getText());
         boolean canDo = Person.login(attempt);
 
         if (!canDo) {
             return;
         } else {
             Person session = Person.getPerson(attempt.getUsername());
-            Login newLogin = new Login(nameBox.toString(), passwordBox.toString());
+            Login newLogin = new Login(nameBox.getText(), passwordBox.getText());
             
             session.setName(newLogin.getUsername());
             session.setLogin(newLogin);
-            session.setAddress(addressBox.toString());
-            session.setEmail(new Email(emailBox.toString()));
-            session.setSsn(new SSN(ssnBox.toString()));
+            session.setAddress(addressBox.getText());
+            session.setEmail(new Email(emailBox.getText()));
+            session.setSsn(new SSN(ssnBox.getText()));
             session.setDob(dobBox.getValue());
 
-            exitPressed(event);
+            exitPressedEdit(event);
         }
     }
 

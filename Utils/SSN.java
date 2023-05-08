@@ -16,4 +16,9 @@ public class SSN implements Serializable{
     public String getSSN() {
         return ssn;
     }
+
+    @Override
+    public String toString() {
+        return getSSN();
+    }
 }

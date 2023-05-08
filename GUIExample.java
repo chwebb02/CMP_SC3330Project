@@ -1,5 +1,6 @@
 import Gui.mainController;
 import Gui.newmemberform;
+import Gui.editinformationform;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

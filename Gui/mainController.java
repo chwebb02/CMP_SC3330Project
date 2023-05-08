@@ -68,8 +68,8 @@ public class mainController {
         changeTo(event, "newmemberform.fxml");
     }
 
-    private void changeTo(ActionEvent event, String fname) throws IOException {
-        Person.test();
+    private void changeTo(ActionEvent event, String fname) throws IOException {    
+        Person.printPeople();
         
         root = FXMLLoader.load(getClass().getResource(fname));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
