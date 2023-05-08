@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.newmemberform">
+   <children>
+      <GridPane layoutX="92.0" layoutY="77.0" prefHeight="336.0" prefWidth="500.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.20001220703125" minWidth="10.0" prefWidth="110.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="429.20001220703125" minWidth="10.0" prefWidth="390.6" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="110.0" text="Address:" GridPane.rowIndex="4" />
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="110.0" text="Email:" GridPane.rowIndex="5" />
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="110.0" text="SSN:" GridPane.rowIndex="6" />
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="110.0" text="Date of Birth:" GridPane.rowIndex="7" />
+            <TextField fx:id="nameBox" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="addressBox" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="emailBox" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="ssnBox" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <DatePicker fx:id="dobBox" prefHeight="26.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </DatePicker>
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="110.0" text="New Password:" GridPane.rowIndex="3" />
+            <PasswordField fx:id="passwordBox" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </PasswordField>
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="110.0" text="New Name:" GridPane.rowIndex="2" />
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="123.0" text="Password:" GridPane.rowIndex="1" />
+            <TextField fx:id="nameBox1" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <PasswordField fx:id="passwordBox1" prefHeight="24.0" prefWidth="363.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </PasswordField>
+         </children>
+      </GridPane>
+      <GridPane layoutY="336.0" prefHeight="26.0" prefWidth="500.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#savePressed" prefHeight="26.0" prefWidth="250.0" text="Confirm" textAlignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitPressed" prefHeight="26.0" prefWidth="251.0" text="Exit" textAlignment="CENTER" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
+      <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="110.0" text="Name:" />
+   </children>
+</AnchorPane>

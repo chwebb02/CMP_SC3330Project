@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import People.Person;
+
 public class mainController {
 
     private Stage stage;
@@ -28,7 +30,7 @@ public class mainController {
 
     @FXML
     void editInfoPressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "editinformationform.fxml");
     }
 
     @FXML
@@ -67,6 +69,8 @@ public class mainController {
     }
 
     private void changeTo(ActionEvent event, String fname) throws IOException {
+        Person.test();
+        
         root = FXMLLoader.load(getClass().getResource(fname));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

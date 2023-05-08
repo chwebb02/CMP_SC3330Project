@@ -31,6 +31,10 @@ public abstract class Person implements Serializable {
     private float balance = 0;
     private float fee = 0;
 
+    public static void test() {
+        System.out.println(peopleDB);
+    }
+
     public float getBalance() {
         return balance;
     }

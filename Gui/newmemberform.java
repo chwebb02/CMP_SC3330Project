@@ -50,13 +50,13 @@ public class newmemberform {
     private TextField passwordBox;
 
     @FXML
-    void exitPressed(ActionEvent event) {
+    private void exitPressed(ActionEvent event) {
         goHome(event);
     }
 
     // Handles the form
     @FXML
-    void savePressed(ActionEvent event) {
+    private void savePressed(ActionEvent event) {
         RadioButton selectedRadioButton = (RadioButton) member.getSelectedToggle();
         String value = selectedRadioButton.getText();
         Login login = new Login(nameBox.getText(), passwordBox.getText());
