@@ -85,6 +85,9 @@ public abstract class Person implements Serializable {
     // Tries to login, returns true or false to indicate whether it was successful
     public static boolean login(Login attempt) {
         Person target = peopleDB.get(attempt.getUsername());
+        if (target == null) {
+            return false; 
+        }
 
         target.entryGranted = target.login.verify(attempt);
         return target.entryGranted;
