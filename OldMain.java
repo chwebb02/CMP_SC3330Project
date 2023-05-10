@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import java.time.LocalDate;
 
-class Main {
+class OldMain {
 
     public static void mainMenu() {
         System.out.println("University of Java Library System");
@@ -283,7 +283,7 @@ class Main {
     // You are free to implememnt other events that you see needs to be implemented
 
     public static void main(String[] args) {
-        Main.mainMenu();
+        OldMain.mainMenu();
 
         System.out.print("Enter your option number: ");
         Scanner scanner = new Scanner(System.in);
@@ -298,34 +298,34 @@ class Main {
                     LibraryCollection.printCollection();
                     break;
                 case 1:
-                    Main.newMemberEvent();
+                    OldMain.newMemberEvent();
                     break;
                 case 11:
-                    Main.loadMemberEvent();
+                    OldMain.loadMemberEvent();
                     break;
                 case 2:
-                    Main.newCollectionEvent();
+                    OldMain.newCollectionEvent();
                     break;
                 case 3:
-                    Main.newRemoveMemberEvent();
+                    OldMain.newRemoveMemberEvent();
                     break;
                 case 4:
-                    Main.newRemoveCollectionEvent();
+                    OldMain.newRemoveCollectionEvent();
                     break;
                 case 5:
-                    Main.newEmployeeEvent();
+                    OldMain.newEmployeeEvent();
                     break;
                 case 51:
-                    Main.loadEmployeeEvent();
+                    OldMain.loadEmployeeEvent();
                     break;
                 case 6:
-                    Main.newBorrowsEvent();
+                    OldMain.newBorrowsEvent();
                     break;
                 case 7:
-                    Main.newReturnEvent();
+                    OldMain.newReturnEvent();
                     break;
                 case 8:
-                    Main.newCheckOverdues();
+                    OldMain.newCheckOverdues();
                     break;
                 case 9:
                     System.exit(0);
@@ -337,7 +337,7 @@ class Main {
         } catch (Exception e) {
             System.out.println("Invalid input errored out, please choose again");
         }
-        Main.mainMenu();
+        OldMain.mainMenu();
     }
 
     }

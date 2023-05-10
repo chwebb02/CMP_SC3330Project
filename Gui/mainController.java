@@ -2,6 +2,7 @@ package Gui;
 
 import java.io.IOException;
 
+import Collections.LibraryCollection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
@@ -9,8 +10,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+
+import People.Person;
 
 public class mainController {
 
@@ -20,7 +21,7 @@ public class mainController {
 
     @FXML
     void borrowItemPressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "checkoutform.fxml");
     }
 
     @FXML
@@ -30,7 +31,7 @@ public class mainController {
 
     @FXML
     void editInfoPressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "editinformationform.fxml");
     }
 
     @FXML
@@ -50,6 +51,9 @@ public class mainController {
 
     @FXML
     void quitPressed(ActionEvent event) {
+        LibraryCollection.save();
+        // Person.save();                   This needs to be implemented
+
         System.exit(0);
     }
 
@@ -65,10 +69,10 @@ public class mainController {
 
     @FXML
     void returnItemPressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "returnform.fxml");
     }
 
-    private void changeTo(ActionEvent event, String fname) throws IOException {
+    private void changeTo(ActionEvent event, String fname) throws IOException {    
         root = FXMLLoader.load(getClass().getResource(fname));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

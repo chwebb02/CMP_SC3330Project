@@ -12,4 +12,13 @@ public class SSN implements Serializable{
             throw new IllegalArgumentException("Invalid ssn");
         }
     }
+
+    public String getSSN() {
+        return ssn;
+    }
+
+    @Override
+    public String toString() {
+        return getSSN();
+    }
 }

@@ -1,18 +1,28 @@
 import Gui.mainController;
 import Gui.newmemberform;
+import Gui.editinformationform;
+import Gui.returnform;
+
+import java.nio.file.Path;
+
+import Collections.Book;
+import Collections.LibraryCollection;
+import Collections.LibraryCollection.SectionCode;
+import People.Person;
+import Gui.checkoutform;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
- 
+
 public class GUIExample extends Application
 {
     @Override
     public void start(Stage stage) throws Exception
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Gui/main.fxml"));
+        loader.setLocation(getClass().getResource("./Gui/main.fxml"));
 
         loader.setClassLoader(getClass().getClassLoader());
 
@@ -24,8 +34,16 @@ public class GUIExample extends Application
         stage.show();
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
+        LibraryCollection.load();
+
+        try {
+            new Book("111111".toCharArray(), SectionCode.ARTS, 50);
+        } catch (Exception e) {
+            
+        }
+        // Need a peopleDB loader
+
         launch(args);
     }
 }

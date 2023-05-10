@@ -21,4 +21,9 @@ public class Email implements Serializable{
     public String getEmailAddress() {
         return emailAddress;
     }
+
+    @Override
+    public String toString() {
+        return getEmailAddress();
+    }
 }
