@@ -17,7 +17,7 @@ The abstract class that all people inherit from
 Basic information relating to their name, address, email, password, dob, and ssn are avaiable here
 */
 public abstract class Person implements Serializable {
-    private static HashMap<String, Person> peopleDB = new HashMap<>();
+    private static HashMap<String, Person> peopleDB = new HashMap<String, Person>();
 
     // Instance Variables
     private String name;
@@ -80,6 +80,18 @@ public abstract class Person implements Serializable {
 
     public static void printPeople() {
         System.out.println(peopleDB);
+    }
+
+    // Changes the key of a member if the name is changed
+    public static boolean changeKey(String oldKey, Person newPerson) {
+        if (peopleDB.get(oldKey) == null || peopleDB.get(newPerson.name) != null) {
+            return false;
+        }
+
+        peopleDB.remove(oldKey);
+        peopleDB.put(newPerson.name, newPerson);
+
+        return true;
     }
 
     // Tries to login, returns true or false to indicate whether it was successful

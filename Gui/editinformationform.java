@@ -64,8 +64,14 @@ public class editinformationform {
         } else {
             Person session = Person.getPerson(attempt.getUsername());
             Login newLogin = new Login(nameBox.getText(), passwordBox.getText());
-            
             session.setName(newLogin.getUsername());
+
+            if (!Person.changeKey(attempt.getUsername(), session)) {
+                session.setName(attempt.getUsername());
+                System.out.println("Cannot change to existing name!");
+                return;
+            }
+            
             session.setLogin(newLogin);
             session.setAddress(addressBox.getText());
             session.setEmail(new Email(emailBox.getText()));
@@ -73,6 +79,7 @@ public class editinformationform {
             session.setDob(dobBox.getValue());
 
             System.out.println("Changed! Data: " + session + "\n\n");
+
             exitPressedEdit(event);
         }
     }

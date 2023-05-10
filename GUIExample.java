@@ -2,6 +2,7 @@ import Gui.mainController;
 import Gui.newmemberform;
 import Gui.editinformationform;
 import Gui.returnform;
+import Gui.addmediaform;
 
 import java.nio.file.Path;
 
@@ -36,12 +37,6 @@ public class GUIExample extends Application
 
     public static void main(String[] args) {
         LibraryCollection.load();
-
-        try {
-            new Book("111111".toCharArray(), SectionCode.ARTS, 50);
-        } catch (Exception e) {
-            
-        }
         // Need a peopleDB loader
 
         launch(args);
