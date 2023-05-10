@@ -51,7 +51,6 @@ public class checkoutform {
 
         if (!Person.login(attempt)) {
             displayLabel.setText("Invalid Login!");
-            Person.printPeople();
             return;
         }
 
