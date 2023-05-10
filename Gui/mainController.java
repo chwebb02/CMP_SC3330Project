@@ -11,8 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import People.Person;
-
 public class mainController {
 
     private Stage stage;
@@ -36,7 +34,7 @@ public class mainController {
 
     @FXML
     void newCollectionPressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "addmediaform.fxml");
     }
 
     @FXML
