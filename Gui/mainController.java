@@ -2,6 +2,7 @@ package Gui;
 
 import java.io.IOException;
 
+import Collections.LibraryCollection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
@@ -20,7 +21,7 @@ public class mainController {
 
     @FXML
     void borrowItemPressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "checkoutform.fxml");
     }
 
     @FXML
@@ -50,6 +51,9 @@ public class mainController {
 
     @FXML
     void quitPressed(ActionEvent event) {
+        LibraryCollection.save();
+        // Person.save();                   This needs to be implemented
+
         System.exit(0);
     }
 
@@ -65,7 +69,7 @@ public class mainController {
 
     @FXML
     void returnItemPressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "returnform.fxml");
     }
 
     private void changeTo(ActionEvent event, String fname) throws IOException {    
