@@ -57,7 +57,7 @@ public class mainController {
 
     @FXML
     void removeItemPressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "removeFromCollection.fxml");
     }
 
     @FXML

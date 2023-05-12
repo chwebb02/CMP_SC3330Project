@@ -3,6 +3,7 @@ import Gui.newmemberform;
 import Gui.editinformationform;
 import Gui.returnform;
 import Gui.addmediaform;
+import Gui.removeFromCollection;
 
 import java.nio.file.Path;
 
