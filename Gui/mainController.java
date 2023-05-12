@@ -39,7 +39,7 @@ public class mainController {
 
     @FXML
     void newEmployeePressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "newemployeeform.fxml");
     }
 
     @FXML
@@ -62,7 +62,7 @@ public class mainController {
 
     @FXML
     void removeMemberPressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "removemembership.fxml");
     }
 
     @FXML

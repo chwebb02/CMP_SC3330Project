@@ -29,19 +29,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="67.0" text="Password:" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="201.0" text="Email:" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <TextField fx:id="nameBox" GridPane.columnIndex="1" />
-            <PasswordField fx:id="passwordBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="emailBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane layoutY="341.0" prefHeight="51.0" prefWidth="600.0">

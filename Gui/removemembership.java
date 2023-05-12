@@ -32,9 +32,17 @@ public class removemembership {
 
     @FXML
     private void removePressed(ActionEvent event) {
-        Person.removePerson(nameBox.getText());
+        boolean removed = Person.removePerson(nameBox.getText());
+        if (removed)
+            System.out.println(nameBox.getText() + " was deleted");
+        else
+            System.out.println(nameBox.getText() + " wasn't a User");
     }
 
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     
     //Function changes scene to menu
     private void goHome(ActionEvent event) {
