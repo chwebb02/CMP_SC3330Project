@@ -24,7 +24,7 @@ public class mainController {
 
     @FXML
     void checkOverduePressed(ActionEvent event)  throws IOException {
-        changeTo(event, "newmemberform.fxml");
+        changeTo(event, "CheckOverdue.fxml");
     }
 
     @FXML

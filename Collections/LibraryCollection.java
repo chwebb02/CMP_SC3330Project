@@ -5,8 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import Utils.CheckedOutMedia;
 import People.Member;
@@ -81,7 +83,17 @@ public abstract class LibraryCollection {
         }
     }
 
-    // Save all objects in the hashmaps
+    public static LinkedList<CheckedOutMedia> getOverdueList() {
+        LinkedList<CheckedOutMedia> out = new LinkedList<CheckedOutMedia>();
+        for (CheckedOutMedia com : checkedOut.values()) {
+            if (com.isLate()) {
+                out.add(com);
+            }
+        }
+
+        return out;
+    }
+
     public static boolean save() {
         try {
             String fileName = "../Data/collection.txt";
@@ -127,7 +139,7 @@ public abstract class LibraryCollection {
     }
 
     // Return value for getISBN or getISSN on subclasses
-    protected char[] getID() {
+    public char[] getID() {
         return identifier;
     }
 
@@ -145,12 +157,15 @@ public abstract class LibraryCollection {
     // Calling function will have to ensure other conditions (such as available
     // slots for member)
     public boolean checkOut(Member mem) {
+        return checkOut(mem, LocalDate.now());
+    }
+
+    public boolean checkOut(Member mem, LocalDate date) {
         if (isCheckedOut) {
             return false;
         }
 
-        // Check out the item
-        CheckedOutMedia item = new CheckedOutMedia(this, mem);
+        CheckedOutMedia item = new CheckedOutMedia(this, mem, date);
         checkedOut.put(new String(this.identifier), item);
 
         isCheckedOut = true;
