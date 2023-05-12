@@ -3,8 +3,12 @@ import Gui.newmemberform;
 import Gui.editinformationform;
 import Gui.returnform;
 import Gui.addmediaform;
-import Gui.CheckOverdue;
 
+import Gui.CheckOverdue;
+import Gui.removeFromCollection;
+
+import Gui.removemembership;
+import Gui.newemployeeform;
 
 import java.nio.file.Path;
 
