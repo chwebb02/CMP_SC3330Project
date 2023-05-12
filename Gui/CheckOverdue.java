@@ -1,74 +1,71 @@
 package Gui;
 
 import java.io.IOException;
-import Collections.LibraryCollection;
-import People.Member;
-import Utils.CheckedOutMedia;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.LinkedList;
+
+import People.Member;
+
+import Collections.LibraryCollection;
+import People.Person;
+import Utils.CheckedOutMedia;
+import Utils.Login;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 public class CheckOverdue {
-    @FXML
-    private TextField isbnField;
-    @FXML
-    private Label statusLabel;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
-    private ArrayList<Member> members = new ArrayList<>();
-    private ArrayList<LibraryCollection> collections = new ArrayList<>();
-    private ArrayList<CheckedOutMedia> checkedOut = new ArrayList<>();
+    @FXML
+    private TextArea display;
 
-    public void initialize() {
-        // Initialize data here
+    @FXML
+    void update(ActionEvent event) {
+        display.textProperty().addListener(new ChangeListener<Object>() {
+            @Override
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                display.setScrollTop(Double.MAX_VALUE);
+            }
+        });
+
+        display.appendText("\n\nOVERDUE MEDIA:\n");
+        LinkedList<CheckedOutMedia> overdueMedia = LibraryCollection.getOverdueList();
+        if (overdueMedia.size() == 0) {
+            display.appendText("NONE!");
+        }
+
+        for (CheckedOutMedia com : overdueMedia) {
+            String id = new String(com.getCheckedOutMedia().getID());
+            display.appendText(com.getOwner().getName() + "\n\tID: " + id + "\n");
+        }
     }
 
     @FXML
-    private void checkStatus() {
-        String isbn = isbnField.getText();
+    void exitPressed(ActionEvent event) {
+        goHome(event);
+    }
 
-        // Find the LibraryCollection by ISBN
-        LibraryCollection collection = null;
-        for (LibraryCollection c : collections) {
-            if (c.getISBN().equals(isbn)) {
-                collection = c;
-                break;
-            }
-        }
-
-        if (collection == null) {
-            // Collection not found
-            statusLabel.setText("Book not found");
-            return;
-        }
-
-        // Find the CheckedOutMedia for this collection, if any
-        CheckedOutMedia checkedOutMedia = null;
-        for (CheckedOutMedia c : checkedOut) {
-            if (c.getCheckedOutMedia() == collection) {
-                checkedOutMedia = c;
-                break;
-            }
-        }
-
-        if (checkedOutMedia == null) {
-            // Book not checked out
-            statusLabel.setText("Book is available");
-        } else {
-            // Book is checked out, check if it's overdue
-            if (checkedOutMedia.isLate()) {
-                statusLabel.setText("Book is overdue!");
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Overdue Book");
-                alert.setHeaderText("This book is overdue");
-                alert.setContentText("Please return this book as soon as possible.");
-                alert.showAndWait();
-            } else {
-                statusLabel.setText("Book is checked out, but not overdue");
-            }
+    private void goHome(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getResource("main.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException error) {
+            System.exit(0);
         }
     }
 }
+ 

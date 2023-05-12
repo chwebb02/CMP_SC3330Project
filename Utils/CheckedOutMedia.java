@@ -2,7 +2,9 @@ package Utils;
 
 import java.time.LocalDate;
 
+import Collections.Book;
 import Collections.LibraryCollection;
+import Collections.LibraryCollection.SectionCode;
 import People.Member;
 
 // This class is a container for a Library Collection object that has been checked out
@@ -18,9 +20,9 @@ public class CheckedOutMedia {
     private boolean fullCharge;
     private Member owner;      // Who checked it out
 
-    public CheckedOutMedia(LibraryCollection media, Member mem) {
+    public CheckedOutMedia(LibraryCollection media, Member mem, LocalDate date) {
         checkedOutMedia = media;
-        checkOutDate = LocalDate.now();
+        checkOutDate = date;
         // currDate = LocalDate.now();
         lost = false;
         fullCharge = false;
@@ -28,6 +30,14 @@ public class CheckedOutMedia {
         dueDate = checkOutDate.plusDays(14);
         monthEndDate = checkOutDate.plusDays(28);
         owner = mem;
+    }
+
+    public CheckedOutMedia(LibraryCollection media, Member mem) {
+        this(media, mem, LocalDate.now());
+    }
+
+    public LibraryCollection getCheckedOutMedia() {
+        return checkedOutMedia;
     }
 
     public Member getOwner() {
@@ -44,7 +54,9 @@ public class CheckedOutMedia {
     }
 
     public boolean renew() {
-        if (isLate()) return false;
+        if (isLate()) {
+            return false;
+        }
         TwelveDate = getCurrentDate().plusDays(12);
         dueDate = getCurrentDate().plusDays(14);
         monthEndDate = getCurrentDate().plusDays(28);
@@ -62,10 +74,8 @@ public class CheckedOutMedia {
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     public boolean dueDateCheck()
