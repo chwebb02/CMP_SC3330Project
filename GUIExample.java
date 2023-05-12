@@ -5,6 +5,9 @@ import Gui.returnform;
 import Gui.addmediaform;
 import Gui.removeFromCollection;
 
+import Gui.removemembership;
+import Gui.newemployeeform;
+
 import java.nio.file.Path;
 
 import Collections.Book;
